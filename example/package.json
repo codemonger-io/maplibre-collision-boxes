@@ -1,0 +1,29 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview --port 4173",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@codemonger-io/maplibre-collision-boxes": "workspace:*",
+    "maplibre-gl": "catalog:",
+    "vue": "^3.3.11"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/geojson": "7946.0.16",
+    "@types/node": "^22.15.31",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/tsconfig": "^0.7.0",
+    "geojson": "^0.5.0",
+    "npm-run-all2": "catalog:",
+    "typescript": "catalog:",
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.2.10"
+  }
+}

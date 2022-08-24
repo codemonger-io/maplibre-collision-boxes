@@ -1,0 +1,44 @@
+{
+  "name": "@codemonger-io/maplibre-collision-boxes",
+  "version": "0.1.0",
+  "description": "Utility to handle Maplibre collision boxes",
+  "packageManager": "pnpm@10.12.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/index.js",
+    "dist/index.mjs",
+    "dist/index.d.ts",
+    "dist/index.js.map",
+    "dist/index.mjs.map",
+    "README_ja.md"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rollup -c && api-extractor run --local",
+    "build:doc": "run-s build && api-documenter markdown --input-folder temp --output-folder api-docs/markdown",
+    "type-check": "tsc --noEmit",
+    "prepare": "run-s build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Maplibre"
+  ],
+  "author": "Kikuo Emoto <kemoto@codemonger.io>",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@microsoft/api-documenter": "^7.26.27",
+    "@microsoft/api-extractor": "^7.52.8",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "gl-matrix": "^3.4.3",
+    "maplibre-gl": "catalog:",
+    "npm-run-all2": "catalog:",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.43.0",
+    "tslib": "^2.8.1",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "maplibre-gl": "~5.0"
+  }
+}
