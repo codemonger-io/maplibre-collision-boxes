@@ -39,6 +39,6 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "maplibre-gl": "~5.0"
+    "maplibre-gl": ">=5 <6"
   }
 }
