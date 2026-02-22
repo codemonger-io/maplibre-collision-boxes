@@ -10,7 +10,8 @@
 import type { Map } from 'maplibre-gl';
 
 import { calculateCollisionBox } from './private/collision-index';
-import { EXTENT, SymbolStyleLayer, isSymbolBucket } from './private/maplibre-types';
+import { EXTENT, isSymbolBucket } from './private/maplibre-types';
+import type { StyleCompat, SymbolStyleLayer } from './private/maplibre-types';
 import { waitForPlacement } from './private/placement';
 import { translatePosition } from './private/util';
 import type { Box, FeatureBox } from './types';
@@ -55,7 +56,7 @@ export async function collectCollisionBoxesAndFeatures(
   map: Map,
   layerId: string,
 ): Promise<FeatureBox[]> {
-  const style = map.style;
+  const style = map.style as StyleCompat;
   // there was a breaking change to `FeatureIndex.lookupSymbolFeatures` in
   // v5.7.2. so we need to determine if maplibre-gl-js is 5.7.2 or higher.
   // in v5.7.2, the `globalState` field in `SymbolBucket` was removed.
@@ -74,9 +75,11 @@ export async function collectCollisionBoxesAndFeatures(
     throw new RangeError(`layer "${layerId}" is not a symbol layer`);
   }
   await waitForPlacement(placement, PLACEMENT_TIMEOUT_IN_MS);
-  const sourceCache = style.sourceCaches[layer.source];
-  if (sourceCache == null) {
-    throw new Error(`no SourceCache available`);
+  // sourceCaches was replaced with tileManagers in v5.11.0
+  const tileManagers = style.tileManagers ?? style.sourceCaches;
+  const tileManager = tileManagers[layer.source];
+  if (tileManager == null) {
+    throw new Error(`no TileManager available`);
   }
   const layerTiles = sourceCache.getRenderableIds(
     true, // symbolLayer?
