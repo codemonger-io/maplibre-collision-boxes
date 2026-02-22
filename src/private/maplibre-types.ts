@@ -15,6 +15,12 @@ import type { Style } from 'maplibre-gl';
 // https://github.com/maplibre/maplibre-gl-js/blob/7887f2c899dcc7f7bfa8a05f5a98c92bf1a5bf5a/src/data/extent.ts#L13
 export const EXTENT = 8192;
 
+export interface StyleCompat extends Style {
+  // sourceCaches was replaced with tileManagers in v5.11.0.
+  // the signature is identical in terms of this library's usage.
+  sourceCaches?: Style['tileManagers'];
+};
+
 // NOTE: unpublished latest `maplibre-gl` exports `StyleLayer`.
 export type StyleLayer = Style['_layers'][number];
 
