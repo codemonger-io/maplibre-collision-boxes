@@ -81,9 +81,13 @@ export async function collectCollisionBoxesAndFeatures(
   if (tileManager == null) {
     throw new Error(`no TileManager available`);
   }
-  const layerTiles = sourceCache.getRenderableIds(
-    true, // symbolLayer?
-  ).map(id => sourceCache.getTileByID(id));
+  const layerTiles = tileManager
+    .getRenderableIds(
+      true, // symbolLayer?
+    )
+    .map(id => tileManager.getTileByID(id))
+    // getTileByID may return undefined since v5.14.0
+    .filter(tile => tile != null);
   const transform = map.painter.transform;
   const collisionBoxesWithFeature = [];
   for (const tile of layerTiles) {

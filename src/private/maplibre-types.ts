@@ -28,7 +28,7 @@ export type Placement = Style['placement'];
 
 export type CollisionIndex = Placement['collisionIndex'];
 
-export type Tile = Style['sourceCaches']['string']['_tiles']['string'];
+export type Tile = Style['tileManagers']['string']['_inViewTiles']['_tiles']['string'];
 
 export type OverscaledTileID = Tile['tileID'];
 
@@ -41,7 +41,7 @@ export type Bucket = Tile['buckets']['string'];
 // Minimal interface of `SymbolBucket`.
 //
 // https://github.com/maplibre/maplibre-gl-js/blob/7887f2c899dcc7f7bfa8a05f5a98c92bf1a5bf5a/src/data/bucket/symbol_bucket.ts#L277-L955
-export type SymbolBucket = Bucket & {
+export interface SymbolBucket extends Bucket {
   // `globalState` was introduced in v5.6.0 but was removed in v5.7.2
   // https://github.com/maplibre/maplibre-gl-js/blob/b3e282bbb0b8f93b503895281ec313a4e2a1c6be/src/data/bucket/symbol_bucket.ts#L315
   globalState?: Record<string, any>;
