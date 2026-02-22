@@ -56,6 +56,15 @@ export async function collectCollisionBoxesAndFeatures(
   layerId: string,
 ): Promise<FeatureBox[]> {
   const style = map.style;
+  // there was a breaking change to `FeatureIndex.lookupSymbolFeatures` in
+  // v5.7.2. so we need to determine if maplibre-gl-js is 5.7.2 or higher.
+  // in v5.7.2, the `globalState` field in `SymbolBucket` was removed.
+  // however, the `globalState` field was introduced in v5.6.0; i.e., v5.5.0 or
+  // lower neither have the `globalState` field. so we need another clue to
+  // distinguish v5.7.2 or higher from v5.5.0 or lower. we can use the fact that
+  // v5.6.0 introduced the `Map.getGlobalState` API that still exists in v5.7.2
+  // or higher.
+  const isV5_6_0OrHigher = typeof map.getGlobalState === 'function';
   const placement = style.placement;
   const layer = style._layers[layerId];
   if (layer == null) {
@@ -84,6 +93,9 @@ export async function collectCollisionBoxesAndFeatures(
       console.warn(`layer "${layerId}" must be associated with a SymbolBucket`);
       continue;
     }
+    // if the bucket has `globalState`,
+    // the version should be between 5.6.0 and 5.7.1
+    const isBetweenV5_6_0AndV5_7_1 = typeof bucket.globalState !== 'undefined';
 
     // parameters calculated in `Placement.getBucketParts`
     // - https://github.com/maplibre/maplibre-gl-js/blob/7887f2c899dcc7f7bfa8a05f5a98c92bf1a5bf5a/src/symbol/placement.ts#L257
@@ -130,8 +142,13 @@ export async function collectCollisionBoxesAndFeatures(
       style._serializedAllLayers() as {[_: string]: StyleLayer},
       queryData.bucketIndex,
       queryData.sourceLayerIndex,
-      // @ts-expect-error: TS2345 - contrary to the type definition, `filterSpec` may be null
-      null, // filterSpec
+      // @ts-expect-error: TS2345 - filterSpec parameter was replaced with filterParams in v5.7.2
+      isV5_6_0OrHigher && !isBetweenV5_6_0AndV5_7_1
+        ? {
+          filterSpec: null,
+          globalState: map.getGlobalState(),
+        }
+        : null, // filterSpec
       null, // filterLayerIDs
       style._availableImages,
       style._layers,
