@@ -36,6 +36,9 @@ export type Bucket = Tile['buckets']['string'];
 //
 // https://github.com/maplibre/maplibre-gl-js/blob/7887f2c899dcc7f7bfa8a05f5a98c92bf1a5bf5a/src/data/bucket/symbol_bucket.ts#L277-L955
 export type SymbolBucket = Bucket & {
+  // `globalState` was introduced in v5.6.0 but was removed in v5.7.2
+  // https://github.com/maplibre/maplibre-gl-js/blob/b3e282bbb0b8f93b503895281ec313a4e2a1c6be/src/data/bucket/symbol_bucket.ts#L315
+  globalState?: Record<string, any>;
   bucketInstanceId: number;
   symbolInstances: SymbolInstanceArray;
   collisionArrays: CollisionArrays[];
