@@ -78,7 +78,7 @@ const map.on('click', layerId, async event => {
 
 ### 型の互換性に関する留意点
 
-このライブラリは`mplibre-gl`のバージョン5.0.0から5.18.0で動作しますが、このライブラリをビルドした`maplibre-gl`のバージョン(5.18.0)と異なるバージョンを使っている場合は`collectCollisionBoxesAndFeatures`関数の呼び出し箇所で型エラーが発生する可能性があります。
+このライブラリは`maplibre-gl`のバージョン5.0.0から5.18.0で動作しますが、このライブラリをビルドした`maplibre-gl`のバージョン(5.18.0)と異なるバージョンを使っている場合は`collectCollisionBoxesAndFeatures`関数の呼び出し箇所で型エラーが発生する可能性があります。
 型エラーが出た場合は無視するか抑制してください。
 
 ## 動機
