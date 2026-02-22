@@ -9,20 +9,20 @@ Maplibreマップ上の衝突ボックスを画面座標系で計算する、[Ma
 ### 事前準備
 
 このライブラリは`maplibre-gl`バージョン5.xと一緒に使用する想定です。
-(開発はv5.6.2で行いました。)
+(テストはv5.18.0で行いました。)
 
 ### インストール方法
 
 このレポジトリを依存関係に追加してください。
 
 ```sh
-npm install https://github.com/codemonger-io/maplibre-collision-boxes#v0.1.0
+npm install https://github.com/codemonger-io/maplibre-collision-boxes#v0.1.1
 ```
 
 #### GitHub Packagesからインストールする
 
 `main`ブランチにコミットがプッシュされるたびに、*開発者用パッケージ*がGitHub Packagesが管理するnpmレジストリにパブリッシュされます。
-*開発者用パッケージ*のバージョンは次のリリースバージョンにハイフン(`-`)と短いコミットハッシュつなげたものになります。例、`0.1.0-abc1234` (`abc1234`はパッケージをビルドするのに使ったコミット(*スナップショット*)の短いコミットハッシュ)。
+*開発者用パッケージ*のバージョンは次のリリースバージョンにハイフン(`-`)と短いコミットハッシュつなげたものになります。例、`0.1.1-abc1234` (`abc1234`はパッケージをビルドするのに使ったコミット(*スナップショット*)の短いコミットハッシュ)。
 *開発者用パッケージ*は[こちら](https://github.com/codemonger-io/maplibre-collision-boxes/pkgs/npm/maplibre-collision-boxes)にあります。
 
 ##### GitHubパーソナルアクセストークンの設定
@@ -46,7 +46,7 @@ PATが手に入ったら以下の内容の`.npmrc`ファイルをホームディ
 これで以下のコマンドで*開発者用パッケージ*をインストールできます。
 
 ```sh
-npm install @codemonger-io/maplibre-collision-boxes@0.1.0-abc1234
+npm install @codemonger-io/maplibre-collision-boxes@0.1.1-abc1234
 ```
 
 `abc1234`はインストールしたい*スナップショット*の短いコミットハッシュに置き換えてください。
@@ -78,7 +78,7 @@ const map.on('click', layerId, async event => {
 
 ### 型の互換性に関する留意点
 
-このライブラリは`mplibre-gl`のバージョン5.0.0から5.6.2で動作しますが、このライブラリをビルドした`maplibre-gl`のバージョン(5.6.2)と異なるバージョンを使っている場合は`collectCollisionBoxesAndFeatures`関数の呼び出し箇所で型エラーが発生する可能性があります。
+このライブラリは`mplibre-gl`のバージョン5.0.0から5.18.0で動作しますが、このライブラリをビルドした`maplibre-gl`のバージョン(5.18.0)と異なるバージョンを使っている場合は`collectCollisionBoxesAndFeatures`関数の呼び出し箇所で型エラーが発生する可能性があります。
 型エラーが出た場合は無視するか抑制してください。
 
 ## 動機

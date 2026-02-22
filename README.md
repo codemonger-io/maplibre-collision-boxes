@@ -9,20 +9,20 @@ A utility library for [Maplibre GL JS (`maplibre-gl`)](https://github.com/maplib
 ### Prerequisites
 
 This library is intended to work with `maplibre-gl` version 5.x.
-(This library has been developed with v5.6.2.)
+(This library has been tested with v5.18.0.)
 
 ### How to install
 
 Please add this repository to your dependencies.
 
 ```sh
-npm install https://github.com/codemonger-io/maplibre-collision-boxes#v0.1.0
+npm install https://github.com/codemonger-io/maplibre-collision-boxes#v0.1.1
 ```
 
 #### Installing from GitHub Packages
 
 Whenever commits are pushed to the `main` branch, a _developer package_ is published to the npm registry managed by GitHub Packages.
-A _developer package_ bears the next release version but followed by a dash (`-`) plus the short commit hash; e.g., `0.1.0-abc1234` where `abc1234` is the short commit hash of the commit used to build the package (_snapshot_).
+A _developer package_ bears the next release version but followed by a dash (`-`) plus the short commit hash; e.g., `0.1.1-abc1234` where `abc1234` is the short commit hash of the commit used to build the package (_snapshot_).
 You can find _developer packages_ [here](https://github.com/codemonger-io/maplibre-collision-boxes/pkgs/npm/maplibre-collision-boxes).
 
 ##### Configuring a GitHub personal access token
@@ -46,7 +46,7 @@ In the root directory of your project, create another `.npmrc` file with the fol
 Then you can install a _developer package_ with the following command:
 
 ```sh
-npm install @codemonger-io/maplibre-collision-boxes@0.1.0-abc1234
+npm install @codemonger-io/maplibre-collision-boxes@0.1.1-abc1234
 ```
 
 Please replace `abc1234` with the short commit hash of the _snapshot_ you want to install.
@@ -78,7 +78,7 @@ You can find a complete project in the [`example`](./example) folder.
 
 ### Remarks on type compatibility
 
-While this library works with `maplibre-gl` version from 5.0.0 through version 5.6.2, you may face a type error at the call of the `collectCollisionBoxesAndFeatures` function if your `maplibre-gl` version is different from the one (5.6.2) for which this library is built.
+While this library works with `maplibre-gl` version from 5.0.0 through version 5.18.0, you may face a type error at the call of the `collectCollisionBoxesAndFeatures` function if your `maplibre-gl` version is different from the one (5.18.0) for which this library is built.
 Please ignore or suppress the type error in case you see it.
 
 ## Motivation
